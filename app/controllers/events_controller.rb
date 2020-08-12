@@ -34,7 +34,7 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to @event, flash: { success: 'Evénement mis à jour !' }
     else
-      redirect_to @event, flash: { error: 'Il y a eu un problème !' }
+      render :edit
     end
   end
 
