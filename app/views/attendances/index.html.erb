@@ -1,0 +1,13 @@
+<div class="container mt-3">
+
+  <%= render 'events/event_full'%>
+  <%= link_to "Modifier événement", edit_event_path(@event), :class => "nav-link btn btn-outline-primary" %>
+
+  <h3> Liste des participants </h3>
+  <ul>
+    <% @event.attendees.each do |attendee| %>
+      <li> <%= attendee.name %></li>
+    </ul>
+  <%end %>
+
+</div>

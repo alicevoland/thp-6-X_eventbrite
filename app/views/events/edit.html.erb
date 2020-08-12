@@ -1,0 +1,64 @@
+<div class="container mt-5">
+  <div class="row">
+
+    <div class="col-md-8 offset-md-2">
+
+      <%= form_with model: @event, local: true do |form| %>
+
+        <% if @event.errors.any? %>
+          <div class="alert alert-warning" role="alert">
+            <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+            <ul>
+              <% @event.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group row">
+          <div class="col-lg-3"> <%= form.label :title, 'Titre' %> </div>
+          <div class="col-lg-9">
+            <%= form.text_field :title, class: "form-control"  %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-3"> <%= form.label :location, 'Localisation' %> </div>
+          <div class="col-lg-9">
+            <%= form.text_field :location, class: "form-control"  %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-3"> <%= form.label :start_date, 'Date' %> </div>
+          <div class="col-lg-9">
+            <%= form.datetime_select  :start_date, class: "form-control"  %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-3"> <%= form.label :duration, 'Durée' %> </div>
+          <div class="col-lg-9">
+            <%= form.number_field :duration, {value: '15', min: 5, step: 5  } %>  (multiple de 5 minutes)
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-3"> <%= form.label :price, 'Prix' %> </div>
+          <div class="col-lg-9">
+            <%= form.number_field :price, {value: '99', min: 1, max: 1000  } %>  (en euros)
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-lg-3"> <%= form.label :description, 'Description' %> </div>
+          <div class="col-lg-9">
+            <%= form.text_area :description, class: "form-control"  %>
+          </div>
+        </div>
+
+        <!-- SUBMIT !-->
+        <div class="actions mt-5">
+          <%= form.submit "Modifier l'événement", class: "btn btn-lg btn-primary btn-block" %>
+        </div>
+
+      <% end %>
+    </div>
+
+  </div>
+</div>

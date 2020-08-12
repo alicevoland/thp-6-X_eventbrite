@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: %i[create edit update]
 
   def index
     @events = Event.order(created_at: :desc)
@@ -22,6 +22,19 @@ class EventsController < ApplicationController
       redirect_to @event
     else
       render :new
+    end
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to @event, flash: { success: 'Evénement mis à jour !' }
+    else
+      redirect_to @event, flash: { error: 'Il y a eu un problème !' }
     end
   end
 
