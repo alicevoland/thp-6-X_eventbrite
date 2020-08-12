@@ -1,72 +1,15 @@
 <div class="container mt-3">
-  <div class="card border-primary mb-3 mt-4">
-    <div class="card-header text-success">
-      <h4> <%= @event.title %> </h4>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-lg-3">
-          Description
-        </div>
-        <div class="col-lg-9">
-          <%= @event.description %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3">
-          Date de début
-        </div>
-        <div class="col-lg-9">
-          <%= @event.start_date %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3">
-          Date de fin
-        </div>
-        <div class="col-lg-9">
-          <%= @event.end_date %> soit une durée de <%= @event.duration %> minutes
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3">
-          Lieu
-        </div>
-        <div class="col-lg-9">
-          <%= @event.location %>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-lg-3">
-          Prix
-        </div>
-        <div class="col-lg-9">
-          <%= @event.price %> €
-        </div>
-      </div>
+  <%= render 'events/event_full'%>
 
-      <div class="row">
-        <div class="col-lg-3">
-          Participants inscrits
-        </div>
-        <div class="col-lg-9">
-          <%= @event.attendances.size %>
-        </div>
-      </div>
+  <% if !user_signed_in? %>
+    <div class="alert alert-primary"> Connecte toi pour t'inscrire ! </div>
+  <% elsif @event.administrator?(current_user) %>
+    <div class="alert alert-primary"> Tu es l'admin de cet événement </div>
+  <% elsif @event.attendee?(current_user) %>
+    <div class="alert alert-primary"> Tu es déjà inscrit </div>
+  <% else %>
+    <%= link_to "Rejoindre l'événement !", new_event_attendance_path(@event), :class => "nav-link btn btn-primary" %>
+  <% end %>
 
-      <div class="row">
-        <div class="col-lg-3">
-          Administrateur
-        </div>
-        <div class="col-lg-9">
-          <%= link_to @event.administrator.name, user_path(@event.administrator.id) %><small class="text-muted">
-            (<%= @event.administrator.email %>) </small>
-        </div>
-      </div>
-    </div>
-    <% if user_signed_in? && (!@event.administrator?(current_user)) && (!@event.attendee?(current_user))  %>
-      <%= link_to "Rejoindre l'événement !", new_event_attendance_path(@event), :class => "nav-link btn btn-primary" %>
-    <% end %>
-
-  </div>
+</div>

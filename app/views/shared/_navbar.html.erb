@@ -41,3 +41,25 @@
     </div>
   </div>
 </nav>
+<div class="container">
+  <% 
+  
+  def flash_class(level)
+    case level
+    when :notice then 'alert alert-info'
+    when :success then 'alert alert-success'
+    when :warning then 'alert alert-warning'
+    when :error then 'alert alert-error'
+    when :alert then 'alert alert-error'
+    else
+      'alert alert-primary'
+    end
+  end
+  flash.each do |key, value| 
+
+  %>
+  <div class="<%= flash_class(key) %>">
+    <%= value %>
+  </div>
+<% end %>
+</div>
