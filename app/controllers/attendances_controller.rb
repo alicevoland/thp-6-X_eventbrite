@@ -31,9 +31,17 @@ class AttendancesController < ApplicationController
                                      description: 'Rails Stripe customer',
                                      currency: 'eur'
                                    })
+    Attendance.create(event: @event, attendee: current_user, stripe_customer_id: customer.id)
     redirect_to event_path(@event), flash: { success: 'Merci pour ton inscription !' }
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to new_event_attendance_path(@event)
+  end
+
+  def index
+    @event = Event.find(params[:event_id])
+    unless @event.administrator?(current_user)
+      redirect_to @event, flash: { error: 'Tu ne peux voir les participants que des événements dont tu es administrateur !' }
+    end
   end
 end

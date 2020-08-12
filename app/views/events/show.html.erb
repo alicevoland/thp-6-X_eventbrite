@@ -5,7 +5,7 @@
   <% if !user_signed_in? %>
     <div class="alert alert-primary"> Connecte toi pour t'inscrire ! </div>
   <% elsif @event.administrator?(current_user) %>
-    <div class="alert alert-primary"> Tu es l'admin de cet événement </div>
+    <%= link_to "Mon espèce événement", event_attendances_path(@event), :class => "nav-link btn btn-outline-primary" %>
   <% elsif @event.attendee?(current_user) %>
     <div class="alert alert-primary"> Tu es déjà inscrit </div>
   <% else %>
