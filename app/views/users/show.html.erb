@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="card border-primary mb-3 mt-4">
+    <div class="card-header text-primary">
+      <h4> <%= @user.first_name %> <%= @user.last_name %> </h4>
+    </div>
+    <div class="card-body">
+      <p class="card-text"> <%= @user.description %> </p>
+    </div>
+  </div>
+</div>
+
+<div class="album">
+  <div class="container">
+    <h2> Ses événements </h2>
+    <div class="row">
+      <%= render @user.events %>
+    </div>
+  </div>
+</div>

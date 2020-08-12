@@ -1,0 +1,68 @@
+<div class="container mt-3">
+  <div class="card border-primary mb-3 mt-4">
+    <div class="card-header text-success">
+      <h4> <%= @event.title %> </h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-3">
+          Description
+        </div>
+        <div class="col-lg-9">
+          <%= @event.description %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          Date de début
+        </div>
+        <div class="col-lg-9">
+          <%= @event.start_date %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          Date de fin
+        </div>
+        <div class="col-lg-9">
+          <%= @event.end_date %> soit une durée de <%= @event.duration %> minutes
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          Lieu
+        </div>
+        <div class="col-lg-9">
+          <%= @event.location %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3">
+          Prix
+        </div>
+        <div class="col-lg-9">
+          <%= @event.price %> €
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3">
+          Participants inscrits
+        </div>
+        <div class="col-lg-9">
+          <%= @event.attendances.size %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-3">
+          Administrateur
+        </div>
+        <div class="col-lg-9">
+          <%= link_to @event.administrator.name, user_path(@event.administrator.id) %><small class="text-muted">
+            (<%= @event.administrator.email %>) </small>
+        </div>
+      </div>
+    </div>
+  </div>
