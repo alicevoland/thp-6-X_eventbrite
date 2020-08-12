@@ -72,6 +72,7 @@ gem 'faker'
 gem 'dotenv-rails'
 gem 'devise'
 gem 'table_print'
+gem 'stripe'
 
 # Better errors
 group :development do

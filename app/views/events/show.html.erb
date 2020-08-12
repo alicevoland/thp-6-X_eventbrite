@@ -65,4 +65,8 @@
         </div>
       </div>
     </div>
+    <% if user_signed_in? && (!@event.administrator?(current_user)) && (!@event.attendee?(current_user))  %>
+      <%= link_to "Rejoindre l'événement !", new_event_attendance_path(@event), :class => "nav-link btn btn-primary" %>
+    <% end %>
+
   </div>

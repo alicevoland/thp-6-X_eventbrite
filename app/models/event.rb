@@ -15,6 +15,14 @@ class Event < ApplicationRecord
     start_date + duration.minutes
   end
 
+  def attendee?(user)
+    attendances.any? { |a| a.attendee == user }
+  end
+
+  def administrator?(user)
+    user == administrator
+  end
+
   private
 
   def start_date_is_future
