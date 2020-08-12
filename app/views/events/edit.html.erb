@@ -58,7 +58,11 @@
         </div>
 
       <% end %>
+
+      <%= link_to "SUPPRIMER l'événement !", event_path(@event), {method: :delete, class: "btn btn-lg btn-block btn-danger mt-4", data: {confirm: "C'est vraiment sur ?"}} %>
+
     </div>
 
   </div>
+
 </div>

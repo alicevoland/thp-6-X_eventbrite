@@ -38,6 +38,18 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+    unless @event.administrator?(current_user)
+      redirect_to root_path, flash: { error: "Vous ne pouvez pas supprimer un événement dont vous n'êtes pas admin !!" }
+    end
+    if @event.destroy
+      redirect_to root_path, flash: { success: 'Evenement bien supprimé' }
+    else
+      redirect_to @event, flash: { error: 'Erreur dans la suppression' }
+    end
+  end
+
   private
 
   def event_params
