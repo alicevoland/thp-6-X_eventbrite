@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  get 'static_pages/home'
+  # ROOT
+  root 'home#index'
+
   # DEVISE (User)
   devise_for :users
-
-  # ROOT
-  root 'events#index'
 
   # RESOURCES
   resources :events do

@@ -1,0 +1,14 @@
+<% content_for :application_content do %>
+  <div class="container">
+    <div class="card border-primary mb-3 mt-4">
+      <div class="card-header text-primary">
+        <h4> <%= @devise_title or "The Hacking Bot" %> </h4>
+      </div>
+      <div class="card-body">
+        <%= content_for?(:devise_content) ? yield(:devise_content) : yield %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render template: 'layouts/application' %>

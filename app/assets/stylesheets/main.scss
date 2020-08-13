@@ -1,5 +1,14 @@
 .jumbotron {
     background-image: url(asset_path('jumbo-picture.jpg'));
     background-size: cover;
-    height: 100%;
   }
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+footer {
+  margin-top: auto;
+}
