@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  # DEVISE (User)
   devise_for :users
+
   # ROOT
   root 'events#index'
 
   # RESOURCES
   resources :events do
     resources :attendances
+    resources :pictures, only: %i[new create]
   end
 
   resources :users, only: %i[show]

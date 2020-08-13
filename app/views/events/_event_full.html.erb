@@ -2,6 +2,14 @@
   <div class="card-header text-success">
     <h4> <%= @event.title %> </h4>
   </div>
+  <div class="card-img-top">
+    <% if @event.picture.attached? %>
+      <%= image_tag @event.picture, alt: 'Card image cap', class: "rounded mx-auto d-block", height: 400 %>
+    <% else %>
+      <img class="rounded mx-auto d-block" src="https://images.unsplash.com/photo-1597075095391-f15c2f9f359a?w=200&q=80" alt="Card image cap" height=400>
+    <% end %>
+  </div>
+
   <div class="card-body">
 
     <div class="row">

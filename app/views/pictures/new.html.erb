@@ -1,0 +1,21 @@
+<div class="container mt-3">
+
+  <%= render 'events/event_full'%>
+
+  <h3>Changer d'image ?</h3>
+  <% if @event.errors.any? %>
+    <div class="alert alert-warning" role="alert">
+      <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+      <ul>
+        <% @event.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form_tag event_pictures_path(@event), multipart: true do %>
+    <%= file_field_tag :picture %>
+    <%= submit_tag "Envoyer l'image" %>
+  <% end %>
+
+</div>

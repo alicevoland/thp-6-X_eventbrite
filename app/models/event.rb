@@ -3,6 +3,9 @@ class Event < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :attendees, through: :attendances
 
+  # Event photo
+  has_one_attached :picture
+
   validate :start_date_is_future
   validate :duration_is_multiple_of_5
 
