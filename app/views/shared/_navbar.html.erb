@@ -1,6 +1,6 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light fixed-top">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light fixed-top bg-secondary">
   <div class="container">
-    <a class="navbar-brand" href="<%= root_path %>"> Eventbrite </a>
+    <a class="navbar-brand text-white" href="<%= root_path %>"> Eventbrite </a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
       aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,11 +9,11 @@
     <div class="collapse navbar-collapse ml-auto" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="<%= events_path %>"> Evénements </a>
+          <a class="nav-link text-white" href="<%= events_path %>"> Evénements </a>
         </li>
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%=current_user.name%>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
@@ -23,7 +23,7 @@
           </li>
         <% else %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Inscription/Connection
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
@@ -36,16 +36,3 @@
     </div>
   </div>
 </nav>
-<div class="container">
-  <% flash.each do |key, value|
-  type = 'secondary'
-  type = 'success' if %i[success].include?(key.to_sym)
-  type = 'primary' if %i[notice info].include?(key.to_sym)
-  type = 'danger' if %i[alert error].include?(key.to_sym)
-  type = 'warning' if %i[warning].include?(key.to_sym)
-  %>
-  <div class="alert alert-<%= type %>">
-    <%= value %>
-  </div>
-<% end %>
-</div>
