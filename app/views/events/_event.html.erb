@@ -11,7 +11,7 @@
       <p class="card-text"> <%= event.title %> </p>
       <div class="d-flex justify-content-between align-items-center mt-auto">
         <div class="btn-group">
-          <a class="btn btn-sm btn-outline-primary" href="<%= event_path(event.id) %>">View</a>
+          <a class="btn btn-sm btn-outline-primary" href="<%= event_path(event.id) %>"> Voir </a>
         </div>
         <small class="text-muted"><%= link_to event.administrator.name, user_path(event.administrator.id) %></small>
       </div>

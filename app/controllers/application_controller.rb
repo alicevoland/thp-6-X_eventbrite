@@ -13,12 +13,9 @@ class ApplicationController < ActionController::Base
   private
 
   def layout_by_resource
-    puts '$' * 100
     if devise_controller?
-      puts 'yes'
       'layouts/devise'
     else
-      puts 'no'
       'layouts/application'
     end
   end
