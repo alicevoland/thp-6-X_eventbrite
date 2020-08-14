@@ -1,25 +1,19 @@
-<div class="row">
+<% @devise_title = "Formulaire de récupération du mot de passe "%>
+<% @devise_color = "info "%>
 
-  <div class="col-md-6 offset-md-3">
-    <br>
-    <%= form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-signin mt-3" } do |f| %>
+<%= render partial: 'shared/errors', locals: {object: resource} %>
 
-      <h1 class="h3 mb-3 font-weight-normal text-center"> Mote de passe oublié </h1>
+<%= form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-signin mt-3" } do |f| %>
 
-      <%= devise_error_messages! %>
-
-      <div class="form-group">
-        <%= f.label :email, "Email" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-      </div>
-
-      <div class="actions mt-5">
-        <%= f.submit "Envoyer email de récupération", class: "btn btn-lg btn-primary btn-block" %>
-      </div>
-
-    <% end %>
-
-    <%= render "devise/shared/links" %>
-
+  <div class="form-group">
+    <%= f.label :email, "Email" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
   </div>
-</div>
+
+  <div class="actions mt-5">
+    <%= f.submit "Envoyer email de récupération", class: "btn btn-lg btn-#{@devise_color} btn-block" %>
+  </div>
+
+<% end %>
+
+<%= render "devise/shared/links" %>

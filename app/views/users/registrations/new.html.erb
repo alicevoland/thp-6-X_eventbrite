@@ -1,4 +1,5 @@
 <% @devise_title = "Formulaire d'inscription"%>
+<% @devise_color = "success"%>
 
 <%= render partial: 'shared/errors', locals: {object: resource} %>
 
@@ -28,7 +29,7 @@
 
   <!-- SUBMIT !-->
   <div class="actions mt-5">
-    <%= f.submit "Inscription", class: "btn btn-lg btn-primary btn-block" %>
+    <%= f.submit "Inscription", class: "btn btn-lg btn-#{@devise_color} btn-block" %>
   </div>
 
   <%= render "devise/shared/links" %>
