@@ -1,12 +1,14 @@
+<%@color = 'success'%>
+
 <div class="container mt-3">
 
   <%= render 'events/event_full'%>
-  <%= link_to "Modifier événement", edit_event_path(@event), :class => "nav-link btn btn-outline-primary" %>
+  <%= link_to "Modifier événement", edit_event_path(@event), :class => "nav-link btn btn-success my-4" %>
 
-  <h3> Liste des participants </h3>
+  <h3 class="my-3"> Liste des participants </h3>
   <ul>
     <% @event.attendees.each do |attendee| %>
-      <li> <%= attendee.name %></li>
+      <li> <%= link_to attendee.name, user_path(attendee) %></li>
     </ul>
   <%end %>
 

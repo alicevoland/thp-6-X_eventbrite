@@ -7,6 +7,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    redirect_to event_attendances_path(@event) if user_signed_in? && @event.administrator?(current_user)
   end
 
   def new
@@ -27,10 +28,12 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    check_current_user_is_admin
   end
 
   def update
     @event = Event.find(params[:id])
+    check_current_user_is_admin
     if @event.update(event_params)
       redirect_to @event, flash: { success: 'Evénement mis à jour !' }
     else
@@ -40,9 +43,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
-    unless @event.administrator?(current_user)
-      redirect_to root_path, flash: { error: "Vous ne pouvez pas supprimer un événement dont vous n'êtes pas admin !!" }
-    end
+    check_current_user_is_admin
     if @event.destroy
       redirect_to root_path, flash: { success: 'Evenement bien supprimé' }
     else
@@ -54,5 +55,11 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:title, :location, :start_date, :duration, :price, :description)
+  end
+
+  def check_current_user_is_admin
+    unless @event.administrator?(current_user)
+      redirect_to @event, flash: { error: "Impossible, vous n'êtes pas l'administrateur" }
+    end
   end
 end

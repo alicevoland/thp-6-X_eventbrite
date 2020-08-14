@@ -1,0 +1,25 @@
+<% @page_title = "Eventbrite | #{@devise_title or "Formulaire"}"%>
+<% content_for :main do %>
+  <div class="container d-flex justify-content-center">
+    <div class="col-lg-8">
+      <div class="card my-5 border-dark text-<%=@devise_color or 'secondary'%>">
+        <div class="card-header">
+          <h4> <%= @devise_title or "Formulaire" %> </h4>
+        </div>
+        <div class="card-body py-4">
+          <%= content_for?(:devise) ? yield(:devise) : yield %>
+        </div>
+        <% if content_for?(:devise_second) %>
+          <div class="card-header">
+            <h4> <%= @devise_second_title or "Formulaire" %> </h4>
+          </div>
+          <div class="card-body py-4">
+            <%= yield :devise_second %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render template: 'layouts/application' %>

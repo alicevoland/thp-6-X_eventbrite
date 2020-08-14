@@ -1,0 +1,10 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4 font-weight-bold"> My EventBrite!</h1>
+    <div class="d-flex justify-content-between align-items-center mt-auto">
+
+      <p class="lead"> ❤️ Hacking events for you         <%= current_user.name if user_signed_in? %>      </p>
+      <a class="btn btn-lg btn-primary" href="<%= new_event_path %>"> Créer un nouvel événement</a>
+    </div>
+  </div>
+</div>

@@ -1,63 +1,58 @@
-<div class="row">
+<% @devise_title = "Formulaire de mise à jour de mes informations "%>
+<% @devise_color = "dark "%>
 
-  <div class="col-md-6 offset-md-3">
-    <br>
-    <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: {  method: :put, class: "form-signin mt-3" } do |f| %>
+<%= render partial: 'shared/errors', locals: {object: resource} %>
 
-      <h1 class="h3 mb-3 font-weight-normal text-center"> Modifier mon compte </h1>
+<%= form_for resource, as: resource_name, url: registration_path(resource_name), html: {  method: :put, class: "form-signin mt-3" } do |f| %>
 
-      <%= devise_error_messages! %>
-
-      <!-- FIRST NAME !-->
-      <div class="form-group">
-        <%= f.label :first_name, "Prénom" %><br />
-        <%= f.text_field :first_name, autocomplete: "first_name", class: "form-control" %>
-      </div>
-
-      <!-- LAST NAME !-->
-      <div class="form-group">
-        <%= f.label :last_name, "Nom" %><br />
-        <%= f.text_field :last_name, autocomplete: "last_name", class: "form-control" %>
-      </div>
-
-      <!-- DESCRIPTION !-->
-      <div class="form-group">
-        <%= f.label :description, "Description" %><br />
-        <%= f.text_area :description, class: "form-control" %>
-      </div>
-
-      <!-- MOT DE PASSE !-->
-      <div class="form-group">
-        <%= f.label :password, "Nouveau mot de passe (laisser vide pour ne pas changer)" %>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> caractères minimum)</em>
-        <% end %>
-        <br>
-        <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
-      </div>
-
-      <!-- CONFIRMATION !-->
-      <div class="form-group">
-        <%= f.label :password_confirmation, "Confirmation du mot de passe" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
-      </div>
-
-      <!-- CURRENT PASSWD !-->
-      <div class="form-group">
-        <%= f.label :current_password, "Mot de passe actuel" %><br />
-        <%= f.password_field :current_password, autocomplete: "new-password", class: "form-control" %>
-      </div>
-
-      <!-- SUBMIT !-->
-      <div class="actions mt-5">
-        <%= f.submit "Mettre à jour mes informations", class: "btn btn-lg btn-primary btn-block" %>
-      </div>
-
-    <% end %>
-
-    <h1 class="h3 mt-5 font-weight-normal text-center"> Supprimer le compte</h1>
-    <p>Unhappy? <%= button_to "Supprimer définitivement", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-    <%= link_to "Back", :back %>
+  <!-- FIRST NAME !-->
+  <div class="form-group">
+    <%= f.label :first_name, "Prénom" %><br />
+    <%= f.text_field :first_name, autocomplete: "first_name", class: "form-control" %>
   </div>
 
-</div>
+  <!-- LAST NAME !-->
+  <div class="form-group">
+    <%= f.label :last_name, "Nom" %><br />
+    <%= f.text_field :last_name, autocomplete: "last_name", class: "form-control" %>
+  </div>
+
+  <!-- DESCRIPTION !-->
+  <div class="form-group">
+    <%= f.label :description, "Description" %><br />
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+
+  <!-- MOT DE PASSE !-->
+  <div class="form-group">
+    <%= f.label :password, "Nouveau mot de passe (laisser vide pour ne pas changer)" %>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> caractères minimum)</em>
+    <% end %>
+    <br>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <!-- CONFIRMATION !-->
+  <div class="form-group">
+    <%= f.label :password_confirmation, "Confirmation du mot de passe" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <!-- CURRENT PASSWD !-->
+  <div class="form-group">
+    <%= f.label :current_password, "Mot de passe actuel" %><br />
+    <%= f.password_field :current_password, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <!-- SUBMIT !-->
+  <div class="actions mt-5">
+    <%= f.submit "Mettre à jour mes informations", class: "btn btn-lg btn-#{@devise_color} btn-block" %>
+  </div>
+  <%= link_to "Back", :back %>
+
+<% end %>
+<% content_for :devise_second do%>
+  <% @devise_second_title="Supprimer le compte" %>
+  <%= button_to "Supprimer définitivement", registration_path(resource_name), data: { confirm: "C'est sûr ?" }, method: :delete, class: "btn btn-lg btn-danger" %>
+<% end %>
