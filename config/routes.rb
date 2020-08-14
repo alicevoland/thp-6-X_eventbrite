@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'static_pages/home'
   # ROOT
-  root 'home#index'
+  root 'static_pages#home'
 
   # DEVISE (User)
   devise_for :users

@@ -5,6 +5,8 @@
 
       <%= form_with model: @event, local: true do |form| %>
 
+        <%= render partial: 'shared/errors', locals: {object: @event} %>
+
         <% if @event.errors.any? %>
           <div class="alert alert-warning" role="alert">
             <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>

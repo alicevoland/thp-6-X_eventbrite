@@ -23,9 +23,7 @@
 
     <%= yield :alerts %>
 
-    <%= yield :devise_error %>
-
-    <%= content_for?(:main_content?) ? yield(:main_content) : yield %>
+    <%= content_for?(:main) ? yield(:main) : yield %>
 
     <%= yield :footer %>
 

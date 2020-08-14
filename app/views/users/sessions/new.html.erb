@@ -1,35 +1,29 @@
-<div class="row">
+<% @devise_title = "Formulaire de connection"%>
 
-  <div class="col-md-6 offset-md-3">
-    <br>
-    <%= form_for resource, as: resource_name, url: session_path(resource_name), html: { class: "form-signin mt-3" } do |f| %>
+<%= render partial: 'shared/errors', locals: {object: resource} %>
 
-      <h1 class="h3 mb-3 font-weight-normal text-center"> Connection </h1>
+<%= form_for resource, as: resource_name, url: session_path(resource_name), html: { class: "form-signin mt-3" } do |f| %>
 
-      <%= devise_error_messages! %>
+  <%= devise_error_messages! %>
 
-      <div class="form-group">
-        <%= f.label :email, "Email" %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :password, "Mot de passe" %>
-        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-      </div>
-
-      <div class="form-group">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me, " se souvenir de moi" %>
-      </div>
-
-      <div class="actions mt-2 mb-3">
-        <%= f.submit "Connection", class: "btn btn-lg btn-primary btn-block" %>
-      </div>
-
-    <% end %>
-
-    <%= render "devise/shared/links" %>
-
+  <div class="form-group">
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
   </div>
-</div>
+
+  <div class="form-group">
+    <%= f.label :password, "Mot de passe" %>
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.check_box :remember_me %>
+    <%= f.label :remember_me, " se souvenir de moi" %>
+  </div>
+
+  <div class="actions mt-2 mb-3">
+    <%= f.submit "Connection", class: "btn btn-lg btn-primary btn-block" %>
+  </div>
+  <%= render "devise/shared/links" %>
+
+<% end %>
